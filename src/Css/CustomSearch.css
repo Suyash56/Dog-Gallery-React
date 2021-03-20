@@ -1,0 +1,14 @@
+.modal-dialog{
+    top:25%;
+}
+
+.getImageButton{
+    position: relative;
+    margin-top: 10%;
+    left: 40%;
+    padding: 5px;
+}
+
+.modal-title{
+    margin-left: 30%;
+}
