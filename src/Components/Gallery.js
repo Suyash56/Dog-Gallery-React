@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Row, Col } from "reactstrap";
-import axios from "axios";
 import "../Css/Gallery.css";
 import CardItemDog from "./CardItemDog";
 
 export default function Gallery({ breeds }) {
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState(""); //Decalre state search for store serch key from searchbar
 
   const searchHandler = (e) => {
+    // This function is used to change state
     e.preventDefault();
     setSearch(e.target.value);
   };
@@ -26,11 +26,13 @@ export default function Gallery({ breeds }) {
         </div>
       </div>
       <Row>
+        {/* Filter according to search key */}
         {Object.keys(breeds)
           .filter((breeds) => breeds.includes(search))
           .map((element) => (
             <Col md={2} style={{ paddingTop: "10px" }}>
-              <CardItemDog breedType={element} />
+              <CardItemDog breedType={element} />{" "}
+              {/* Render CardItemDog Component and pass breedType as props */}
             </Col>
           ))}
       </Row>

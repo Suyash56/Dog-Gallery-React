@@ -12,8 +12,8 @@ import DisplaySubBreed from "./DisplaySubBreed";
 import "../Css/CardItemDog.css";
 
 export default function CardItemDog({ breedType }) {
-  const [image, setImage] = useState("");
-
+  const [image, setImage] = useState(""); // Decalre state image to store particular random image
+  //Fetch random image from Breed collection
   useEffect(() => {
     axios
       .get(`https://dog.ceo/api/breed/${breedType}/images/random`)
@@ -25,6 +25,7 @@ export default function CardItemDog({ breedType }) {
   const [clicked, setClicked] = useState(false);
 
   const handleClick = () => {
+    //This function is used to handle if user clicked on particular image in gallery
     setClicked(!clicked);
   };
 
@@ -42,6 +43,7 @@ export default function CardItemDog({ breedType }) {
           <CardTitle tag="h5">{breedType}</CardTitle>
         </CardBody>
       </Card>
+      {/* Render DisplaySubBreed if user clicked on particular image */}
       <DisplaySubBreed
         breedType={breedType}
         isOpen={clicked}

@@ -6,9 +6,9 @@ import CustomImages from "./CustomImages";
 export default function CustomSearch({ breeds }) {
   const [modal, setModal] = useState(false);
 
-  const [breedName, setBreedName] = useState("");
+  const [breedName, setBreedName] = useState(""); // Decalre state breedName to store breedName which is input from user
 
-  const [numberOfImages, setNumberOfImages] = useState(0);
+  const [numberOfImages, setNumberOfImages] = useState(0); // Decalre state numberOfImages to store number of images which user wants
 
   const [ImageButtonClick, setImageButtonClick] = useState(false);
 
@@ -44,12 +44,17 @@ export default function CustomSearch({ breeds }) {
           >
             Custome Search
           </ModalHeader>
+
+          {/* Breed Selection Form */}
+
           <ModalBody>
+            {/* Dropdown field to select a breed from the dog breeds list. */}
             <select onChange={handleBreed}>
               {Object.keys(breeds).map((element) => {
                 return <option value={element}>{element}</option>;
               })}
             </select>
+            {/* Number field to enter the number of images to load*/}
             <input
               type="number"
               value={numberOfImages}
@@ -66,6 +71,8 @@ export default function CustomSearch({ breeds }) {
               </button>
             </div>
           </ModalBody>
+
+          {/* Image Section */}
 
           <ModalFooter>
             {ImageButtonClick === false ? (

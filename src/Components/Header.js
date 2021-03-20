@@ -6,6 +6,7 @@ export default function Header({breeds}) {
     <>
       <div className="header">
         <h1 className="title">Dog Gallery</h1>
+        {/* Render CustomSearch Component */}
         <CustomSearch breeds = {breeds}/>
       </div>
     </>
