@@ -12,13 +12,12 @@ import {
 } from "reactstrap";
 import "../Css/DisplaySubBreed.css";
 
-export default function DisplaySubBreed({ breedType, isOpen,toggle }) {
-
+export default function DisplaySubBreed({ breedType, isOpen, toggle }) {
   const [subBreedImage, setSubBreedImage] = useState([]);
 
   const [randomBreedImages, setRandomBreedImages] = useState([]);
 
-  const s = [];
+  const subbreed = [];
   useEffect(() => {
     axios
       .get(`https://dog.ceo/api/breed/${breedType}/list`)
@@ -29,12 +28,12 @@ export default function DisplaySubBreed({ breedType, isOpen,toggle }) {
               `https://dog.ceo/api/breed/${breedType}/${subBreed}/images/random`
             )
             .then((response) => {
-              s.push(response.data.message);
+              subbreed.push(response.data.message);
             })
             .catch((error) => {
               console.log(error);
             });
-          setSubBreedImage(s);
+          setSubBreedImage(subbreed);
         });
       })
       .catch((error) => {
@@ -50,6 +49,8 @@ export default function DisplaySubBreed({ breedType, isOpen,toggle }) {
       });
   }, []);
 
+  
+
   return (
     <>
       <div>
@@ -64,22 +65,26 @@ export default function DisplaySubBreed({ breedType, isOpen,toggle }) {
             <h3 style={{ marginLeft: "150px" }}>Sub Breeds</h3>
             <Row style={{ paddingTop: "10px" }}>
               {subBreedImage.map((image) => {
-                console.log(image);
+                let arr = image.split('-')
+                arr = arr[1].split('/')
                 return (
-                    <Card style={{ width: "30%", height: "50%" }}>
-                      <CardImg
-                        top
-                        width="10px"
-                        height="80px"
-                        src={image}
-                        alt="Card image cap"
-                      />
-                      <CardBody style={{ padding: "0em" }} height="50px">
-                        <CardTitle tag="h5">{breedType}</CardTitle>
-                      </CardBody>
-                    </Card>
+                  <Card style={{ width: "30%", height: "50%" }}>
+                    <CardImg
+                      top
+                      width="10px"
+                      height="80px"
+                      src={image}
+                      alt="Card image cap"
+                    />
+                    <CardBody style={{ padding: "0em" }} height="50px">
+                      <CardTitle tag="h5">{arr[0]}</CardTitle>
+                    </CardBody>
+                  </Card>
                 );
               })}
+              {
+                subBreedImage.length === 0 && <h5 style={{ marginLeft: "170px",backgroundColor:"red" }}>No Sub Breeds</h5>
+              }
             </Row>
           </ModalBody>
           <ModalFooter>
