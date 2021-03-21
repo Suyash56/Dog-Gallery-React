@@ -6,9 +6,9 @@ import CustomImages from "./CustomImages";
 export default function CustomSearch({ breeds }) {
   const [modal, setModal] = useState(false);
 
-  const [breedName, setBreedName] = useState(""); // Decalre state breedName to store breedName which is input from user
+  const [breedName, setBreedName] = useState(""); // Declare state breedName to store breedName which is input from user
 
-  const [numberOfImages, setNumberOfImages] = useState(0); // Decalre state numberOfImages to store number of images which user wants
+  const [numberOfImages, setNumberOfImages] = useState(0); // Declare state numberOfImages to store number of images which user wants
 
   const [ImageButtonClick, setImageButtonClick] = useState(false);
 
@@ -37,14 +37,14 @@ export default function CustomSearch({ breeds }) {
     <>
       <div>
         <button className="searchbtn" onClick={toggle}>
-          Custome Search
+          Custom Search
         </button>
         <Modal isOpen={modal} toggle={toggle} style={{ top: "25%" }}>
           <ModalHeader
             toggle={toggle}
             style={{ textAlign: "center", backgroundColor: "lightgray" }}
           >
-            Custome Search
+            Custom Search
           </ModalHeader>
 
           {/* Breed Selection Form */}

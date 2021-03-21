@@ -4,13 +4,14 @@ import "../Css/Gallery.css";
 import CardItemDog from "./CardItemDog";
 
 export default function Gallery({ breeds }) {
-  const [search, setSearch] = useState(""); //Decalre state search for store serch key from searchbar
+  //console.log(breeds);
+  const [search, setSearch] = useState(""); //Declare state search for store search key from search bar
 
   const searchHandler = (e) => {
     // This function is used to change state
-    e.preventDefault();
     setSearch(e.target.value);
   };
+
 
   return (
     <>
@@ -27,13 +28,15 @@ export default function Gallery({ breeds }) {
       </div>
       <Row>
         {/* Filter according to search key */}
-        {Object.keys(breeds)
-          .filter((breeds) => breeds.includes(search))
-          .map((element) => (
+        {Object.entries(breeds)
+          .filter((breed,index) => breed[0].includes(search))
+          .map((element,index) => (
+
             <Col md={2} style={{ paddingTop: "10px" }}>
-              <CardItemDog breedType={element} />{" "}
+              <CardItemDog key={index} breedType={element[0]} subBreed={element[1]} />
               {/* Render CardItemDog Component and pass breedType as props */}
             </Col>
+            
           ))}
       </Row>
     </>

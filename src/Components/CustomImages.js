@@ -4,7 +4,7 @@ import { Row, Col } from "reactstrap";
 import axios from "axios";
 
 function CustomImages({ breedName, numberOfImages }) {
-  const [images, setImages] = useState([]); //Decalre state to store images
+  const [images, setImages] = useState([]); //Declare state to store images
 
   {
     /* Fetch API of random images from breed collection in which name of breed and number image came from breed selection form */

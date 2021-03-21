@@ -31,3 +31,10 @@ body {
 .card:hover {
   box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
 }
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  .title {
+    float: left;
+  }
+}

@@ -5,7 +5,12 @@ import { Row, Col } from "reactstrap";
 import { Card, CardBody, CardTitle, CardImg } from "reactstrap";
 import "../Css/DisplaySubBreed.css";
 
-export default function DisplaySubBreed({ breedType, isOpen, toggle }) {
+export default function DisplaySubBreed({
+  breedType,
+  subBreed,
+  isOpen,
+  toggle,
+}) {
   const [subBreedImage, setSubBreedImage] = useState([]); // Used to store random images from each subbreed
 
   const [randomBreedImages, setRandomBreedImages] = useState([]); // used to store random 3 images of dog breed
@@ -15,26 +20,18 @@ export default function DisplaySubBreed({ breedType, isOpen, toggle }) {
     {
       /* First fetch particular breed and after that fetch random images from each subbreed*/
     }
-    axios
-      .get(`https://dog.ceo/api/breed/${breedType}/list`)
-      .then((response) => {
-        response.data.message.map((subBreed) => {
-          axios
-            .get(
-              `https://dog.ceo/api/breed/${breedType}/${subBreed}/images/random`
-            )
-            .then((response) => {
-              subbreed.push(response.data.message);
-            })
-            .catch((error) => {
-              console.log(error);
-            });
-          setSubBreedImage(subbreed);
+    subBreed.map((element) => {
+      axios
+        .get(`https://dog.ceo/api/breed/${breedType}/${element}/images/random`)
+        .then((response) => {
+          subbreed.push(response.data.message);
+        })
+        .catch((error) => {
+          console.log(error);
         });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    });
+
+    setSubBreedImage(subbreed);
     {
       /* Fetch random 3 images from dog breed */
     }
@@ -56,14 +53,14 @@ export default function DisplaySubBreed({ breedType, isOpen, toggle }) {
             toggle={toggle}
             style={{ textAlign: "center", backgroundColor: "lightgray" }}
           >
-            Selected Dog Breed Name
+            Selected Dog Breed {breedType}
           </ModalHeader>
 
           {/* Show Sub Breeds section */}
 
           <ModalBody>
             <h3 style={{ marginLeft: "150px" }}>Sub Breeds</h3>
-            <Row style={{ paddingTop: "10px" }}>
+            <Row style={{ paddingTop: "10px",justifyContent: "space-around" }}>
               {subBreedImage.map((image) => {
                 let arr = image.split("-");
                 arr = arr[1].split("/");
@@ -82,9 +79,9 @@ export default function DisplaySubBreed({ breedType, isOpen, toggle }) {
                   </Card>
                 );
               })}
-              {/* If their is no sub breed then show message */}
+              {/* If there is no sub breed then show message */}
               {subBreedImage.length === 0 && (
-                <h5 style={{ marginLeft: "170px", backgroundColor: "red" }}>
+                <h5 style={{ backgroundColor: "red" }}>
                   No Sub Breeds
                 </h5>
               )}
