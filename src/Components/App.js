@@ -16,9 +16,9 @@ export default function App() {
   }, []); //Empty dependancy array for work as componentDidMount
   return (
     <div className="App">
-      <Header breeds={breeds} />{" "}
+      <Header breeds={breeds} />
       {/* Render Header Component and pass breeds state as props */}
-      <Gallery breeds={breeds} />{" "}
+      <Gallery breeds={breeds} />
       {/* Render Gallery Component and pass breeds state as props */}
     </div>
   );

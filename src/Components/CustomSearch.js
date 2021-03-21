@@ -20,15 +20,17 @@ export default function CustomSearch({ breeds }) {
   };
 
   const handleBreed = (e) => {
+    setImageButtonClick(false);
     setBreedName(e.target.value);
   };
 
   const handleNumberOfImages = (e) => {
+    setImageButtonClick(false);
     setNumberOfImages(e.target.value);
   };
 
   const handleGetImageButtonClick = () => {
-    setImageButtonClick(!ImageButtonClick);
+    setImageButtonClick(true);
   };
 
   return (
@@ -81,7 +83,6 @@ export default function CustomSearch({ breeds }) {
               <CustomImages
                 breedName={breedName}
                 numberOfImages={numberOfImages}
-                toggled={handleGetImageButtonClick}
               />
             )}
           </ModalFooter>
